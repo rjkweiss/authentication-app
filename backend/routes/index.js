@@ -3,10 +3,13 @@
 const express = require('express');
 const router = express.Router();
 
-// sample testing route
-router.get('/hello-world', (req, res, next) => {
-    res.cookie('XSRF-TOKEN', req.csrfToken());
-    res.json('Hello World!');
+// allow CSRF token cookie, XSRF-TOKEN to be reset
+router.get('/api/csrf/restore', (req, res) => {
+    const csrfToken = req.csrfToken();
+    res.cookie('XSRF-TOKEN', csrfToken);
+    res.status(200).json({
+        'XSRF-TOKEN': csrfToken
+    });
 });
 
 // export router so it can be used in the express application
