@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { setTokenCookie } = require('../../utils/auth');
+const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
 
 // post method to login a user
@@ -31,6 +31,28 @@ router.post('/', async(req, res, next) => {
 
     // return user info
     return res.json({ user });
+});
+
+// logout a user  by removing the XSRF token cookie from the response
+// return a JSON success message
+router.delete('/', (_req, res) => {
+    res.clearCookie('token');
+    return res.json({ message: 'You are successfully logged out'});
+});
+
+// get session user
+router.get('/', restoreUser, (req, res) => {
+    // get the current session user from request
+    const { user } = req;
+
+    // if user is found, return the details, otherwise return an empty json
+    if (user) {
+        return res.json({
+            user: user.toSafeObject()
+        });
+    } else {
+        return res.json({});
+    }
 });
 
 // export router so it can be used elsewhere
