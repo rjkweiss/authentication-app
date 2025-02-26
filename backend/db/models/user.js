@@ -1,6 +1,8 @@
 'use strict';
-const { Model, Op } = require('sequelize');
-const { Validator } = require('validator');
+const { Model, Op, Validator } = require('sequelize');
+// .const { Validator } = require('validator');
+
+const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -48,9 +50,9 @@ module.exports = (sequelize, DataTypes) => {
 
       // create a new user and save to database
       const user = await User.create({
-        username,
-        email,
-        hashedPassword
+        username: username,
+        email: email,
+        hashedPassword: hashedPassword
       });
 
       // return the created using using current user scope
@@ -86,6 +88,11 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       validate: {
         len: [3, 256],
+        isEmail(value) {
+          if (!Validator.isEmail(value)) {
+            throw new Error('Invalid Email Address');
+          }
+        }
       }
 
     },
