@@ -11,11 +11,6 @@ const users = [
     hashedPassword: bcrypt.hashSync('demoPassword')
   },
   {
-    email: 'test@user.io',
-    username: 'testUser',
-    hashedPassword: bcrypt.hashSync('testPassword')
-  },
-  {
     email: 'example@user.io',
     username: 'exampleUser',
     hashedPassword: bcrypt.hashSync('examplePassword')

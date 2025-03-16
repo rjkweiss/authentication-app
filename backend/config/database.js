@@ -1,9 +1,16 @@
 const config = require('./index');
 
+const db = config.db;
+
+const { username, password, database, host } = db
+
 module.exports = {
   development: {
-    storage: config.dbFile,
-    dialect: 'sqlite',
+    username,
+    password,
+    database,
+    host,
+    dialect: 'postgres',
     seederStorage: 'sequelize',
     logQueryParameters: true,
     typeValidation: true

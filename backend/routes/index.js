@@ -7,14 +7,38 @@ const router = express.Router();
 const apiRouter = require('./api');
 router.use('/api', apiRouter);
 
-// allow CSRF token cookie, XSRF-TOKEN to be reset
-router.get('/api/csrf/restore', (req, res) => {
-    const csrfToken = req.csrfToken();
-    res.cookie('XSRF-TOKEN', csrfToken);
-    res.status(200).json({
-        'XSRF-TOKEN': csrfToken
+// static routes
+// serve react build files in production
+if (process.env.NODE_ENV === 'production') {
+    const path = require('path');
+
+    // serve front end files
+    router.get('/', (req, res) => {
+        res.cookie('XSRF-TOKEN', req.csrfToken());
+        return res.sendFile(
+            path.resolve(__dirname, '../../frontend', 'build', 'index.html')
+        );
     });
-});
+
+    // serve static assets in frontend's build
+    router.use(express.static(path.resolve('../frontend/build')));
+
+    // serve any other paths that do not start with 'api'
+    router.get(/^(?!\/?api).*/, (req, res) => {
+        res.cookie('XSRF-TOKEN', req.csrfToken());
+        return res.sendFile(
+            path.resolve(__dirname, '../../frontend', 'build', 'index.html')
+        );
+    });
+}
+
+// allow CSRF token cookie, XSRF-TOKEN to be reset in development environment only
+if (process.env.NODE_ENV !== 'production') {
+    router.get('/api/csrf/restore', (req, res) => {
+        res.cookie('XSRF-TOKEN', req.csrfToken());
+        return res.json({});
+    });
+}
 
 // export router so it can be used in the express application
 module.exports = router;
