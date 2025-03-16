@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  color: #333;
+  display: flex;
+  place-content: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: #c75000;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.25s;
+  width: 150px;
+}
+
+button:hover {
+  border-color: #fff;
+}
+
+button:focus,
+button:focus-visible {
+  border-color: #fff;
+  outline: 4px #fff -webkit-focus-ring-color;
+}
+
+.error-space ul {
+  color: red;
+  list-style: ' *  ';
+}
+
+.form-container {
+  display: block;
+  min-width: 500px;
+}
+
+form {
+  display: inline-block;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  box-shadow: #7779861a 0 3px 20px;
+  display: inline-block;
+  margin-bottom: 40px;
+  padding: 30px;
+  width: 100%;
+  min-width: 500px;
+  max-width: 600px;
+}
+
+.form-title {
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  padding: 0px 15px;
+}
+
+.form-control {
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  line-height: 16px;
+  margin: 5px 0;
+  padding: 15px 10px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+  border: 2px solid #c75000;
+  outline: none;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0px;
+}
