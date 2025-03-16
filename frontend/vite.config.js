@@ -4,9 +4,12 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  build: {
+    outDir: '../frontend/build'
+  },
   server: {
     proxy: {
-      '/api': 'http://localhost:8000'
+      '/api': process.env.NODE_ENV === 'production'? '': 'http://localhost:8000'
     }
   }
 })
