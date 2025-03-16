@@ -1,8 +1,10 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-import './Navigation.css';
 import ProfileButton from "./ProfileButton";
+import LoginFormModal from "../LoginFormModal/LoginFormPage";
+
+import './Navigation.css';
 
 const Navigation = () => {
 
@@ -16,7 +18,8 @@ const Navigation = () => {
                 {!sessionUser ? (
                     <div className="action-links">
                         <NavLink to='/signup'>Signup</NavLink>
-                        <NavLink to='/login'>Login</NavLink>
+                        {/* <NavLink to='/login'>Login</NavLink> */}
+                        <LoginFormModal />
                     </div>
                 ): (
                     <div className="action-links">

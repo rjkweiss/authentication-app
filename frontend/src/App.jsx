@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import LoginFormPage from './components/LoginFormPage/LoginFormPage';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { restoreUser } from './store/session';
@@ -23,7 +22,6 @@ function App() {
       {isLoaded && (
         <Routes>
           <Route path='/' element={ sessionUser ? <h2>Authenticated App Component</h2> : <Navigate to='/login'/>} />
-          <Route path='/login' element={sessionUser ? <Navigate to='/' /> : <LoginFormPage />} />
           <Route path='/signup' element={<SignupFormPage />} />
         </Routes>
       )}

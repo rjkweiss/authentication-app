@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import store from './store/store.jsx';
 import csrfFetch from './store/csrf.jsx';
 import * as sessionActions from './store/session.jsx';
+import { ModalContextProvider } from './context/Modal.jsx';
 import App from './App.jsx';
 
 import './index.css';
@@ -19,9 +20,11 @@ const Root = () => {
   return (
     <StrictMode>
       <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <ModalContextProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ModalContextProvider>
       </Provider>
     </StrictMode>
   );

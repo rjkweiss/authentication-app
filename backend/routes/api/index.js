@@ -12,10 +12,5 @@ router.use('/session', SessionRouter);
 // connect users router
 router.use('/users', usersRouter);
 
-// sample test for the routes
-router.post('/test', (req, res) => {
-    res.json({ requestBody: req.body });
-});
-
 // export router so it accessible to necessary files that rely on it
 module.exports = router;

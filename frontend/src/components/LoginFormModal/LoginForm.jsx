@@ -1,14 +1,9 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { login } from "../../store/session";
-import { useNavigate } from "react-router-dom";
 
-
-
-
-const LoginFormPage = () => {
+const LoginForm = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         credential: '',
@@ -16,16 +11,6 @@ const LoginFormPage = () => {
     });
 
     const [errors, setErrors] = useState([]);
-
-    // get session user
-    const sessionUser = useSelector((state) => state.session.user);
-
-    // redirect to homepage if logged in
-    useEffect(() => {
-        if (sessionUser) {
-            navigate('/');
-        }
-    }, [sessionUser, navigate]);
 
     // handle on change
     const handleChange = (e) => {
@@ -118,4 +103,4 @@ const LoginFormPage = () => {
     );
 };
 
-export default LoginFormPage;
+export default LoginForm;

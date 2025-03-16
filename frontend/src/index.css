@@ -37,21 +37,15 @@ button:focus-visible {
 }
 
 .form-container {
-  display: block;
-  min-width: 500px;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
 }
 
 form {
-  display: inline-block;
-  border: 1px solid #eee;
-  border-radius: 10px;
-  box-shadow: #7779861a 0 3px 20px;
-  display: inline-block;
-  margin-bottom: 40px;
-  padding: 30px;
-  width: 100%;
-  min-width: 500px;
-  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .form-title {
