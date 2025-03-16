@@ -1,7 +1,9 @@
 // configure express Router
 // basis for the REST API for the entire application
 const router = require('express').Router();
+
 const SessionRouter = require('./session');
+
 const usersRouter = require('./users');
 
 // connect session router

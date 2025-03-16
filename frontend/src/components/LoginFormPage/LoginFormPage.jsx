@@ -60,7 +60,15 @@ const LoginFormPage = () => {
         } catch (res) {
             const data = await res.json();
             if (data && data.errors) {
-                setErrors(data.errors);
+
+                const err = [];
+                for (let item of data.errors) {
+                    if (item !== 'Invalid value') {
+                        err.push(item);
+                    }
+                }
+
+                setErrors(err);
             }
         }
     };

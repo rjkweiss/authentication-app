@@ -1,10 +1,10 @@
 
 // configure an express router
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 
 // import the REST API routes
 const apiRouter = require('./api');
+
 router.use('/api', apiRouter);
 
 // static routes

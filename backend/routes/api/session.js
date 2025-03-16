@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
+
 const { User } = require('../../db/models');
 
 // import validation modules
@@ -21,6 +22,7 @@ const validateLogin = [
     check('password')
         .exists({ checkFalsy: true})
         .withMessage('Please Provide a password'),
+
     handleValidationErrors
 ];
 

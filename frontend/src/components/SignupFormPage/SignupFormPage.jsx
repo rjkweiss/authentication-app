@@ -56,8 +56,14 @@ const SignupFormPage = () => {
         } catch (res) {
             const data = await res.json();
 
-            if (data.errors > 0) {
-                setErrors(data.errors);
+            if ( data && data.errors) {
+                const err = [];
+                for (let item of data.errors) {
+                    if (item !== 'Invalid value') {
+                        err.push(item);
+                    }
+                }
+                setErrors(err);
             }
         }
 

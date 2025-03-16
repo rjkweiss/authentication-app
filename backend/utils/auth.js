@@ -47,8 +47,6 @@ const restoreUser = (req, res, next) => {
             return next();
         }
 
-        console.log("passed the error")
-
         try {
             const { id } = jwtPayload.data;
             req.user = await User.scope('currentUser').findByPk(id);
