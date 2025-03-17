@@ -1,24 +1,22 @@
 import { configureStore } from '@reduxjs/toolkit';
-import logger from 'redux-logger';
 import { thunk } from 'redux-thunk';
 import sessionReducer from './session';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const middleware = (getDefaultMiddleware) => {
-    if (isProduction) {
-        return getDefaultMiddleware().concat(thunk);
-    }
+const middleware = [thunk];
 
-    return getDefaultMiddleware().concat(thunk, logger);
-
-};
+// Only in dev
+if (!isProduction) {
+    const { createLogger } = require('redux-logger');
+    middleware.push(createLogger());
+}
 
 const store = configureStore({
     reducer: {
         session: sessionReducer
     },
-    middleware,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(middleware),
     devTools: !isProduction
 });
 
