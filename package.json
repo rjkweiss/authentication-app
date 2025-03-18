@@ -5,6 +5,7 @@
   "main": "backend/app.js",
   "scripts": {
     "install": "npm --prefix backend install backend && npm --prefix frontend install frontend",
+    "heroku-postbuild": "cd frontend && npm install && npm run build",
     "start": "npm --prefix backend start",
     "server": "npm --prefix backend start",
     "client": "npm --prefix frontend start",
