@@ -13,24 +13,25 @@ router.use('/api', apiRouter);
 if (process.env.NODE_ENV === 'production') {
     const path = require('path');
 
-    // serve front end files
-    router.get('/', (req, res) => {
-        res.cookie('XSRF-TOKEN', req.csrfToken());
-        return res.sendFile(
-            path.resolve(__dirname, '../../frontend', 'build', 'index.html')
-        );
-    });
-
     // serve static assets in frontend's build
-    router.use(express.static(path.resolve('../frontend/build')));
+    router.use(express.static(path.resolve(__dirname, '../../frontend/dist')));
 
     // serve any other paths that do not start with 'api'
     router.get(/^(?!\/?api).*/, (req, res) => {
         res.cookie('XSRF-TOKEN', req.csrfToken());
         return res.sendFile(
-            path.resolve(__dirname, '../../frontend', 'build', 'index.html')
+            path.resolve(__dirname, '../../frontend/dist', 'index.html')
         );
     });
+
+    // serve front end files
+    router.get('/', (req, res) => {
+        res.cookie('XSRF-TOKEN', req.csrfToken());
+        return res.sendFile(
+            path.resolve(__dirname, '../../frontend/dist', 'index.html')
+        );
+    });
+
 }
 
 // allow CSRF token cookie, XSRF-TOKEN to be reset in development environment only
