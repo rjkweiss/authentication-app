@@ -9,7 +9,7 @@
     "start": "per-env",
     "heroku-postbuild": "cd frontend && npm install && npm run build",
     "start:development": "nodemon ./bin/www",
-    "start:production": "node ./bin/www"
+    "start:production": "node backend/bin/www"
   },
   "keywords": [],
   "author": "",
